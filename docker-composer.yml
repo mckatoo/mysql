@@ -11,8 +11,6 @@ services:
       - 3306:3306
     networks:
       - global
-    volumes:
-      - ./mysql-data:/var/lib/mysql
     deploy:
       restart_policy:
         condition: on-failure
