@@ -1,0 +1,37 @@
+version: "3.7"
+
+networks:
+  global:
+    driver: overlay
+
+services:
+  db:
+    image: mysql
+    ports:
+      - 3306:3306
+    networks:
+      - global
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 180s
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    command: --default-authentication-plugin=mysql_native_password
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - global
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 180s
