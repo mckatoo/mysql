@@ -1,2 +1,2 @@
 # MySQL
-## Swarm Mode
+## SWARM MODE
