@@ -12,6 +12,7 @@ services:
     networks:
       - global
     deploy:
+      replicas: 2
       restart_policy:
         condition: on-failure
         delay: 5s
